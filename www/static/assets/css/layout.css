@@ -8009,7 +8009,7 @@ ul.search-history {
 	right: 0;
 	z-index: 5;
 	width: 280px;
-	height: 524px;
+	height: 484px;
 	background-color: #303030;
 }
 .tvinfo .tvintro a {
@@ -8231,4 +8231,18 @@ ul.search-history {
 }
 .showlists .inner1{
 	position: relative;
+}
+.showlists .item .current {
+	cursor: default;
+	background: #194e6f;
+}
+.showlists .item .current .serial label {
+	display: none;
+}
+.showlists .item .serial .playing {
+	display: none;
+	vertical-align: middle;
+}
+.showlists .item .current .serial .playing {
+	display: inline-block;
 }

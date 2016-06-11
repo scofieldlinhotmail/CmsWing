@@ -52,7 +52,7 @@ CLASSES:
 <section class="container">
     <!-- OWL SLIDER -->
 <div class="video_bg">
-   <div id="video-box" style="width: 860px; height: 524px">
+   <div id="video-box" style="width: 860px; height: 484px">
 
    </div>
     <div class="listbox" id="player_sidebar">
@@ -62,14 +62,14 @@ CLASSES:
             <li><a href="#profile" data-toggle="tab">会员</a></li>
         </ul>
 
-        <div class="tab-content slim-scroll" data-height="480px" data-size="10px">
+        <div class="tab-content slim-scroll" data-height="440px" data-size="10px">
             <div class="tab-pane fade in active " id="home">
 
                 <div class="tvinfo ">
                     <h3>{{pinfo.title}}</h3>
                     <a class="iku_share" id="iku_share" style="display:none"><i></i>放到桌面</a>
                     <p class="tvintro">
-                        更新至<em>3</em>集  <em></em>
+                        更新至<em>{{lastlevel}}</em>集  <em></em>
                         <a href="javascript:" class="showinfo_btn" id="dropdown">
                             节目信息	<span class="caret"></span>
                         </a>
@@ -91,11 +91,11 @@ CLASSES:
                     <div class="item item-close" >
                         <div class="inner1">
                             <div class="program" title="{{val.title}}" >
-                                <a href="{{val.name|get_url(val.id)}}" class="A" >
-                                    <div class="serial"><label>{{val.level}}</label><span class="playing"></span></div>
+                                <a href="{{val.name|get_url(val.id)}}" class="A {%if info.id == val.id%}current{%endif%}" >
+                                    <div class="serial"><label>{{val.level}}</label><span class="playing fa fa-youtube-play"></span></div>
                                     <div class="headline">{{val.title}}</div>
-                                    <div class="time"><label>嘉宾:</label><span>孙红雷</span> <span>黄渤</span> <span>黄磊</span> </div>
-                                    <div class="statplay"><i class="ico-statplay" title="播放"></i>125,725,863</div>
+                                    <div class="time"><label>更新:</label><span>{{val.create_time|dateformat('Y-m-d')}}</span> </div>
+                                    <div class="statplay"><i class="fa fa-play-circle-o" title="播放"></i> {{val.view}}</div>
                                 </a>
                             </div>
                             <div class="" ></div>
@@ -572,14 +572,14 @@ Share Post:
             {
                 appkey: 'VJa72yR7W',//必填，请在控制台查看应用标识
                 live: false,//选填，是否是直播流，默认为false
-                video: 'http://{{controller.setup.QINIU_DOMAIN_NAME}}/{{info.video_id|get_file("savename",false)}}',//必填，播放地址（http://www.tudou.com/programs/view/tM_vZCQy2uM/）或者资源地址（http://7xi4ig.com2.z0.glb.qiniucdn.com/shapuolang_ts.mp4）
-                title: '小视频',//选填，视频标题
-                cover: '',//选填，视频封面url
+                video: '{%if info.video_id != 0%}http://{{controller.setup.QINIU_DOMAIN_NAME}}/{{info.video_id|get_file("savename",false)}}{%else%}{{info.videourl}}{%endif%}',//必填，播放地址（http://www.tudou.com/programs/view/tM_vZCQy2uM/）或者资源地址（http://7xi4ig.com2.z0.glb.qiniucdn.com/shapuolang_ts.mp4）
+                title: '{{info.title}}',//选填，视频标题
+                cover: '{{info.cover_id|get_pic("")}}',//选填，视频封面url
                 videoStartPrefixSeconds: 0,//选填，跳过片头，默认为0
                 videoEndPrefixSeconds: 0,//选填，跳过片尾，默认为0
                 /* 以下参数可以在“控制台->项目看板->应用管理->播放器设置”进行全局设置，前端设置可以覆盖全局设置 */
-                skinSelect: 0,//选填，播放器皮肤，可选0、1、2，默认为0，
-                autoplay: false,//选填，是否自动播放，默认为false
+                skinSelect: 2,//选填，播放器皮肤，可选0、1、2，默认为0，
+                autoplay: true,//选填，是否自动播放，默认为false
                 rightHand: true,//选填，是否开启右键菜单，默认为false
                 autoFormat: false,//选填，是否自动选择最高清晰度，默认为false
                 bubble: true,//选填，是否开启云泡功能，默认为true
