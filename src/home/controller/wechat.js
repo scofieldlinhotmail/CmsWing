@@ -49,6 +49,7 @@ export default class extends think.controller.base {
     async getopenidAction(){
         //获取用户openid
        let code =  this.get("code");
+        console.log(code);
         //获取openid
         let getopenid = ()=>{
             let deferred = think.defer();
@@ -135,8 +136,9 @@ export default class extends think.controller.base {
         //console.log(this.setup)
         //创建关注二维码
         //TODO
-        //let titck =await createLimitQRCode(api,1);
-        let qrcod = this.api.showQRCodeURL("gQFF7zoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL0xFemdKSlBsaWNid1pvVnhzbUFiAAIEZfoRVwMEAAAAAA==");
+        // let titck =await createLimitQRCode(this.api,1);
+        // console.log(titck);
+        let qrcod = this.api.showQRCodeURL("gQHz7zoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL3JqX0p2Zm5sMnBtalQwX215eE1NAAIEjMBoVwMEAAAAAA==");
         this.assign("qrurl",qrcod);
         //think.log(qrcod);
         // this.end(qrcod);
